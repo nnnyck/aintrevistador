@@ -1,0 +1,24 @@
+services:
+  piper:
+    build: ./piper
+    container_name: piper
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./piper/audio:/app/audio
+
+  sadtalker:
+    build: ./sadtalker
+    container_name: sadtalker
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    entrypoint: ["/bin/bash"]
+    command: ["-c", "tail -f /dev/null"]
+    volumes:
+      - ./sadtalker/inputs:/app/inputs
+      - ./sadtalker/outputs:/app/outputs
