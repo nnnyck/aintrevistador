@@ -5,5 +5,6 @@ import { PiperController } from './piper.controller';
 @Module({
   controllers: [PiperController],
   providers: [PiperService],
+  exports: [PiperService],
 })
 export class PiperModule {}
