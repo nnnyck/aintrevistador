@@ -22,3 +22,12 @@ services:
     volumes:
       - ./sadtalker/inputs:/app/inputs
       - ./sadtalker/outputs:/app/outputs
+
+  vosk:
+    build: ./vosk
+    container_name: vosk
+    ports:
+      - "2700:2700"
+    restart: unless-stopped
+
+
